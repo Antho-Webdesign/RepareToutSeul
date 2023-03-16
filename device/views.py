@@ -25,7 +25,6 @@ class CategoryListView(ListView):
         return context
 
 
-
 class CategoryDetailView(DetailView):
     model = Category
     template_name = 'device/category_detail.html'
@@ -33,7 +32,7 @@ class CategoryDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        alug = self.kwargs.get('slug') # Récupère le slug de la catégorie dans l'URL
+        alug = self.kwargs.get('slug')  # Récupère le slug de la catégorie dans l'URL
         context['appareils'] = Appareils.objects.filter(category__slug=alug)
         return context
 
