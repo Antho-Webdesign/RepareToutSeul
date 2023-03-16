@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>{{ appareil.name }}</h1>
+  <p>Marque: {{ appareil.marque }}</p>
+  <p>Catégorie: {{ appareil.category }}</p>
+  <p>Description: {{ appareil.description }}</p>
+  <img src="{{ appareil.image.url }}" alt="{{ appareil.name }}">
+
+{% endblock %}

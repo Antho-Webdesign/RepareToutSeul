@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+
+        .card {
+            width: 45%;
+            background: transparent;
+            justify-content: center;
+            flex-direction: column;
+            margin: 75px auto;
+            align-items: center;
+            padding: 30px;
+            border: none;
+        }
+
+
+        /* Élément | http://127.0.0.1:8000/appareils/ */
+
+        div.container:nth-child(2) {
+            display: flex;
+            max-width: none;
+            height: 100%;
+            padding: 150px 0;
+        }
+
+        /* Feuille de style intégrée #7 | http://127.0.0.1:8000/appareils/ */
+
+        .card {
+            /* width: 45%; */
+            width: 33%;
+        }
+
+    </style>
+
+    <div class="bg-dark text-light">
+        <h1>Appareils List</h1>
+
+
+        <div class="container">
+            {% for appareil in appareils %}
+                <!-- card 1 -->
+                <div class="card shadow-sm">
+                    <h1 class="card-text text-light">{{ appareil.name }}</h1>
+                    <img src="{{ appareil.image.url }}" alt="" style="width: 66%; margin: 75px auto;">
+                    <div class="card-body">
+                        <p class="card-text">{{ appareil.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button type="button" class="btn btn-sm btn-success">
+                                <a href="{% url 'appareils_detail' appareil.slug %}">
+                                    Details
+                                </a>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary">Edit</button>
+                        </div>
+                    </div>
+                </div>
+
+            {% empty %}
+                <li>No appareils found.</li>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

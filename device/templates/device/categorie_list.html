@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+
+        /* Élément | http://127.0.0.1:8000/category/ */
+
+        div.container:nth-child(5) {
+            display: flex;
+            justify-content: space-between;
+            margin: 50px 0;
+            width: 100%;
+            max-width: none;
+        }
+
+        /* Feuille de style intégrée #7 | http://127.0.0.1:8000/category/ */
+
+        .card {
+            background: transparent;
+            justify-content: center;
+            flex-direction: column;
+            margin: 75px auto;
+            align-items: center;
+            padding: 30px;
+            border: none;
+        }
+
+    </style>
+
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                    aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <rect width="100%" height="100%" fill="#777"></rect>
+                </svg>
+
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Liste des Categories</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev"  data-bs-slide="prev">
+            <a class="carousel-control-prev-icon" href="{% url 'index' %}"></a>
+        </button>
+
+    </div>
+
+
+    <div class="container marketing bg-dark text-light m-0">
+
+        <!-- Three columns of text below the carousel -->
+        {% for cat in categories %}
+            <div class="card">
+                <img src="{{ cat.img_cat.url }}" alt="" style="width: 45%; margin: 50px auto;">
+                <h2 class="fw-normal">{{ cat.name }}</h2>
+                <p>{{ cat.description }}</p>
+
+                <p>
+                    <a class="btn btn-info" href="{% url 'appareils_list'  %}">
+                        Détails
+                    </a>
+                </p>
+            </div><!-- /.col-lg-4 -->
+
+        {% empty %}
+            <li>No appareils found.</li>
+        {% endfor %}
+
+    </div>
+
+
+{% endblock %}
