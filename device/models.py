@@ -42,7 +42,7 @@ class Appareils(models.Model):
     image = models.ImageField(upload_to='devices/', null=True, blank=True)
     slug = models.SlugField(unique=True, editable=False)
     # duree = models.DateTimeField(auto_now_add=False, auto_now=False, null=True)
-    temps_estime = models.IntegerField(null=True)
+    temps_estime = models.IntegerField(null=True, default=30)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
