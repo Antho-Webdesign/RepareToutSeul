@@ -19,6 +19,9 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('category_detail', args=[str(self.slug)])
 
+    class Meta:
+        ordering = ['name']
+
 
 class Marques(models.Model):
     name = models.CharField(max_length=255)
@@ -32,6 +35,9 @@ class Marques(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['name']
 
 
 class Appareils(models.Model):

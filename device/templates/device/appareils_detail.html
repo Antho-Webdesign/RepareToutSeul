@@ -1,11 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <style>
 
-  <h1>{{ appareil.name }}</h1>
-  <p>Marque: {{ appareil.marque }}</p>
-  <p>Catégorie: {{ appareil.category }}</p>
-  <p>Description: {{ appareil.description }}</p>
-  <img src="{{ appareil.image.url }}" alt="{{ appareil.name }}">
+        .card {
+            width: 33%;
+            background: transparent;
+            justify-content: center;
+            flex-direction: column;
+            margin: 75px auto;
+            align-items: center;
+            padding: 30px;
+            border: none;
+        }
+
+        div.container:nth-child(2) {
+            display: flex;
+            max-width: none;
+            height: 100%;
+            padding: 150px 0;
+        }
+
+    </style>
+
+    <div class="bg-dark text-light" style="margin: 0 auto !important;">
+    <img src="{{ appareil.marque.logo.url }}" alt="logo" style="display: flex; justify-content: center; margin: auto; width: 10%;">
+        <div class="card shadow-sm" style="border: solid 1px #fff; margin: 30px auto 0 auto!important;">
+            <h1 style="text-align: center;">{{ appareil.name }}</h1>
+            <small class="text-warning">Durée: {{ appareil.temps_estime }}</small>
+            <img src="{{ appareil.image.url }}" alt="" style="width: 66%; margin: 75px auto;">
+            <div class="card-body">
+                <p class="card-text">{{ appareil.description }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="button" class="btn btn-sm btn-success">
+                        <a href="{% url 'appareils_detail' appareil.slug %}">
+                            Details
+                        </a>
+                    </button>
+                    <p class="btn btn-sm btn-warning">Temps estimé: {{ appareil.temps_estime }} (min)</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
